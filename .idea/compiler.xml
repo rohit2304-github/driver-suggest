@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="kafka-consumer" />
+        <module name="kafka-publisher" />
+        <module name="suggest" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="kafka-consumer" target="1.8" />
+      <module name="kafka-publisher" target="1.8" />
+      <module name="suggest" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="kafka-consumer" options="-parameters" />
+      <module name="kafka-publisher" options="-parameters" />
+      <module name="suggest" options="-parameters" />
+    </option>
+  </component>
+</project>
