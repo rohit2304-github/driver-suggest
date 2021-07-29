@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: store-application
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/db
+    username: user
+    password: user123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      initialization-fail-timeout: 0
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+    database: mysql
+
+#  liquibase:
+  #  change-log: classpath:db/changelog/db-changelog-master.xml
+ #   default-schema: demo
+
+swagger:
+  api:
+    title: Store Application
+    description: Store Application
+    version: 1.0
+server:
+  port: 9080

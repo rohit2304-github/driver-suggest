@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet author="rohitk" id="create:store_drivers-2.0">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="store_drivers"/>
+            </not>
+        </preConditions>
+
+        <comment>creates table: store_drivers</comment>
+
+        <createTable tableName="store_drivers">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="store_dr_pk"/>
+            </column>
+            <column name="driverID" type="VARCHAR(30)" >
+                <constraints nullable="false" unique="false" />
+            </column>
+            <column name="storeID" type="VARCHAR(30)">
+                <constraints nullable="false" unique="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="createunique-constraint-2.0" author="rohitk">
+        <addUniqueConstraint tableName="store_drivers"
+                             columnNames="driverID, storeID"
+                             constraintName="store_drivers_uniqueKey"/>
+
+    </changeSet>
+    <changeSet id="createfk1-2.0" author="rohitk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="driver_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="store_drivers" baseColumnNames="driverID"
+                                 constraintName="driver_fk"
+                                 referencedTableName="drivers_location" referencedColumnNames="driverID"/>
+
+    </changeSet>
+    <changeSet id="createfk2-2.0" author="rohitk">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="stores_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="store_drivers" baseColumnNames="storeID"
+                                 constraintName="store_fk"
+                                 referencedTableName="stores_location" referencedColumnNames="storeID"/>
+
+    </changeSet>
+
+    <changeSet id="insert-store-drivers:2.0" author="rohitk">
+        <comment>Insert to  StoreDrivers</comment>
+        <insert tableName="store_drivers">
+            <column name="id" value="3e93686d-8a9c-46f5-9999-79ff7cfea3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver01@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="76f5-9785-85ff7ciuy3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver02@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="abfadf-132-2asd-23423"/>
+            <column name="storeID" value="2434"/>
+            <column name="driverID" value="driver03@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="6f93323d-4m5v-46f5-2312-79ff7ctyu3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver03@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="7f93686d-7d4h-46f5-3456-55ff7cfea3e2"/>
+            <column name="storeID" value="2434"/>
+            <column name="driverID" value="driver02@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="8f93686d-9h6d-46f5-7564-79ss7cfea3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver05@email.com"/>
+        </insert>
+    </changeSet>
+  
+</databaseChangeLog>

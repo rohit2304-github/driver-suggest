@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1.3" author="rohitk">
+        <comment>Insert to  StoresLocation</comment>
+        <insert tableName="stores_location">
+            <column name="storeID" value="1234"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="123.88"/>
+        </insert>
+        <insert tableName="stores_location">
+            <column name="storeID" value="2434"/>
+            <column name="longitude" valueNumeric="128.886"/>
+            <column name="latitude" valueNumeric="-123.88"/>
+        </insert>
+        <insert tableName="stores_location">
+            <column name="storeID" value="4656"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="23.88"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

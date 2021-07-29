@@ -1,0 +1,42 @@
+version: '2.1'
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  db:
+    build: ../mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
+      MYSQL_ROOT_PASSWORD: user123
+      MYSQL_DATABASE: db
+    ports:
+      - 3306:3306
+
+  consumer-1:
+    build: ../../kafka-consumer
+    ports:
+      - "12346:12346"
+    links:
+      - db
+    environment:
+      JAVA_HEAP_SIZE_MB: 2048
+     # ENV_KAFKA_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9093,PLAINTEXT://kafka2:9094,PLAINTEXT://kafka3:9095
+      ENV_KAFKA_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9092
+      ENV_APPLICATION_PORT: 12346
+      ENV_APPLICATION_CLIENTID: consumer-1
+
+  consumer-2:
+    build: ../../kafka-consumer
+    ports:
+      - "12347:12347"
+    links:
+      - db
+    environment:
+      JAVA_HEAP_SIZE_MB: 2048
+     # ENV_KAFKA_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9093,PLAINTEXT://kafka2:9094,PLAINTEXT://kafka3:9095
+      ENV_KAFKA_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9092
+      ENV_APPLICATION_PORT: 12347
+      ENV_APPLICATION_CLIENTID: consumer-2
+

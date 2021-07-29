@@ -1,0 +1,10 @@
+{
+  "databaseChangeLog": [
+    {
+      "includeAll": {
+        "path": "/src/main/resources/db/changelog/db.changelog-master.yaml",
+        "relativeToChangelogFile": false
+      }
+    }
+  ]
+}

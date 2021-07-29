@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelog/mysql-stores-location-schema.xml
+  - include:
+      file: /db/changelog/mysql-drivers-location-schema.xml
+  - include:
+      file: /db/changelog/mysql-store-drivers-schema.xml
+#  - include:
+#      file: /db/changelog/insert-stores-location-data.xml
+#  - include:
+#      file: /db/changelog/insert-drivers-location-data.xml
+#  - include:
+#      file: /db/changelog/insert-store-drivers-data.xml

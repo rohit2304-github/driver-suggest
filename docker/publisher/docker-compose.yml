@@ -1,0 +1,17 @@
+version: '2.1'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  publisher-1:
+    build: ../../kafka-publisher
+    ports:
+      - "12348:12348"
+    environment:
+      JAVA_HEAP_SIZE_MB: 2048
+     # ENV_KAFKA_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9093,PLAINTEXT://kafka2:9094,PLAINTEXT://kafka3:9095
+      ENV_KAFKA_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9092
+      ENV_APPLICATION_CLIENTID: publisher-1
+

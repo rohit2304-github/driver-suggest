@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet author="rohitk" id="create:driver_location-2.0">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="drivers_location"/>
+            </not>
+        </preConditions>
+
+        <comment>creates table: drivers_location</comment>
+
+        <createTable tableName="drivers_location">
+            <column name="driverID" type="VARCHAR(30)" >
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="longitude" type="DECIMAL(8,5)">
+                <constraints nullable="false" unique="false" />
+            </column>
+            <column name="latitude" type="DECIMAL(8,5)">
+                <constraints nullable="false" unique="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2.0" author="rohitk">
+        <comment>Insert to  DriversLocation</comment>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver01@email.com"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="123.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver02@email.com"/>
+            <column name="longitude" valueNumeric="128.886"/>
+            <column name="latitude" valueNumeric="-123.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver03@email.com"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="23.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver04@email.com"/>
+            <column name="longitude" valueNumeric="118.886"/>
+            <column name="latitude" valueNumeric="14.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver05@email.com"/>
+            <column name="longitude" valueNumeric="99.886"/>
+            <column name="latitude" valueNumeric="-44.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver06@email.com"/>
+            <column name="longitude" valueNumeric="85.886"/>
+            <column name="latitude" valueNumeric="55.88"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

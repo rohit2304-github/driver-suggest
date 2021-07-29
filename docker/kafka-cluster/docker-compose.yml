@@ -1,0 +1,106 @@
+version: '2.1'
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:3'
+    container_name: zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - app-tier
+    volumes:
+      - zookeeper_data:/bitnami/zookeeper
+
+  kafka1:
+    image: 'bitnami/kafka:2'
+    container_name: kafka1
+    ports:
+      - '9092:9092'
+    expose:
+      - '19092'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+#      - KAFKA_CFG_BROKER_ID=1
+      - ALLOW_PLAINTEXT_LISTENER=yes
+#      - KAFKA_CFG_NUM_PARTITIONS=3
+#      - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=2
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka1:19092,PLAINTEXT_HOST://localhost:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:19092,PLAINTEXT_HOST://0.0.0.0:9092
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+    depends_on:
+      - "zookeeper"
+    links:
+      - zookeeper
+    healthcheck:
+      test:
+        ["CMD", "kafka-topics.sh", "--list", "--zookeeper", "zookeeper:2181"]
+      interval: 30s
+      timeout: 10s
+      retries: 4
+    networks:
+      - app-tier
+    volumes:
+      - kafka_1_data:/bitnami/kafka
+
+#  db:
+#    image: mysql:5.7
+#    restart: always
+#    container_name: mysqlContainer
+#    environment:
+#      MYSQL_DATABASE: 'db'
+#      # So you don't have to use root, but you can if you like
+#      MYSQL_USER: 'user'
+#      # You can use whatever password you like
+#      MYSQL_PASSWORD: 'user123'
+#      # Password for root access
+#      MYSQL_ROOT_PASSWORD: 'user123'
+#    ports:
+#      # <Port exposed> : < MySQL Port running inside container>
+#      - '3306:3306'
+#    expose:
+#      # Opens port 3306 on the container
+#      - '3306'
+#      # Where our data will be persisted
+#    volumes:
+#      - my-db:/var/lib/mysql
+#    depends_on:
+#      - kafka1
+#    links:
+#      - kafka1
+#    networks:
+#      - app-tier
+
+#  liquibase:
+#    image: liquibase/liquibase
+#    container_name: liquibaseContainer
+#    links:
+#      - db
+#    volumes:
+#      - ./db/changelog:/db/changelog
+#    command: --changeLogFile=db.changelog-master.yaml --url=jdbc:mysql://db:3306/db --username=user --password=user123 update
+
+#  liquibase:
+#    image: "webdevops/liquibase:mysql"
+#    volumes:
+#      - .:/liquibase
+#    environment:
+#      - LIQUIBASE_CHANGELOG=${LIQUIBASE_CHANGELOG}
+#      - LIQUIBASE_URL=jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+#      - LIQUIBASE_USERNAME=${POSTGRES_USER}
+#      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+
+# Names our volume
+volumes:
+  my-db:
+    driver: local
+  zookeeper_data:
+    driver: local
+  kafka_1_data:
+    driver: local

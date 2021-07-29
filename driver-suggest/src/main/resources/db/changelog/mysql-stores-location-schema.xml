@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet author="rohitk" id="create:stores_location-2.0">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="stores_location"/>
+            </not>
+        </preConditions>
+
+        <comment>creates table: stores_location</comment>
+
+        <createTable tableName="stores_location">
+            <column name="storeID" type="VARCHAR(30)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="longitude" type="DECIMAL(8,5)">
+                <constraints nullable="false" unique="false" />
+            </column>
+            <column name="latitude" type="DECIMAL(8,5)">
+                <constraints nullable="false" unique="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2.0" author="rohitk">
+        <comment>Insert to  StoresLocation</comment>
+        <insert tableName="stores_location">
+            <column name="storeID" value="1234"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="123.88"/>
+        </insert>
+        <insert tableName="stores_location">
+            <column name="storeID" value="2434"/>
+            <column name="longitude" valueNumeric="128.886"/>
+            <column name="latitude" valueNumeric="-123.88"/>
+        </insert>
+        <insert tableName="stores_location">
+            <column name="storeID" value="4656"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="23.88"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

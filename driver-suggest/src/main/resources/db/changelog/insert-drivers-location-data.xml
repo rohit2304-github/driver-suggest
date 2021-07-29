@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1.2" author="rohitk">
+        <comment>Insert to  DriversLocation</comment>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver01@email.com"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="123.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver02@email.com"/>
+            <column name="longitude" valueNumeric="128.886"/>
+            <column name="latitude" valueNumeric="-123.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver03@email.com"/>
+            <column name="longitude" valueNumeric="28.886"/>
+            <column name="latitude" valueNumeric="23.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver04@email.com"/>
+            <column name="longitude" valueNumeric="118.886"/>
+            <column name="latitude" valueNumeric="14.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver05@email.com"/>
+            <column name="longitude" valueNumeric="99.886"/>
+            <column name="latitude" valueNumeric="-44.88"/>
+        </insert>
+        <insert tableName="drivers_location">
+            <column name="driverID" value="driver06@email.com"/>
+            <column name="longitude" valueNumeric="85.886"/>
+            <column name="latitude" valueNumeric="55.88"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

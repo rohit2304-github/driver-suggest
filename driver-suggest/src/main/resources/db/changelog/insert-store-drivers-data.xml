@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="insert-store-drivers:1.4" author="rohitk">
+        <comment>Insert to  StoreDrivers</comment>
+        <insert tableName="store_drivers">
+            <column name="id" value="3e93686d-8a9c-46f5-9999-79ff7cfea3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver01@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="76f5-9785-85ff7ciuy3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver02@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="abfadf-132-2asd-23423"/>
+            <column name="storeID" value="2434"/>
+            <column name="driverID" value="driver03@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="6f93323d-4m5v-46f5-2312-79ff7ctyu3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver03@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="7f93686d-7d4h-46f5-3456-55ff7cfea3e2"/>
+            <column name="storeID" value="2434"/>
+            <column name="driverID" value="driver02@email.com"/>
+        </insert>
+        <insert tableName="store_drivers">
+            <column name="id" value="8f93686d-9h6d-46f5-7564-79ss7cfea3e2"/>
+            <column name="storeID" value="1234"/>
+            <column name="driverID" value="driver05@email.com"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
