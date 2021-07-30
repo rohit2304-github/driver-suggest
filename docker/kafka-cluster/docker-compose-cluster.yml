@@ -113,5 +113,5 @@ volumes:
     driver: local
   kafka_2_data:
     driver: local
-  my-db:
-    driver: local
+#  my-db:
+#    driver: local
